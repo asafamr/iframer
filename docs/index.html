@@ -1,1 +1,31 @@
-hi
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>IFRAMER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe id="main" style="border: none; width: 100%; height: 100%;"></iframe>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const address = urlParams.get("add");
+      fetch(address)
+        .then((x) => x.text())
+        .then((s) => {
+          var blob = new Blob([s], { type: "text/html; charset=utf-8" });
+          document.getElementById("main").src = URL.createObjectURL(blob);
+        });
+    </script>
+  </body>
+</html>
